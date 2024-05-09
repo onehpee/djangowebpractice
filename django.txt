@@ -1,0 +1,13 @@
+Django is a high-level Python Web framework that encourages rapid development and clean pragmatic design.
+A Web framework is a set of components that provide a standard way to develop websites fast and easily.
+
+Django’s primary goal is to ease the creation of complex database-driven websites.
+Some well known sites that use Django include PBS, Instagram, Disqus, Washington Times, Bitbucket and Mozilla.
+
+
+
+The second reason you should learn Django is the scope of its features. If you need to build a website, you don’t need to rely on any external libraries or packages if you choose Django. 
+This means that you don’t need to learn how to use anything else, and the syntax is seamless as you’re using only one framework.
+
+There’s also the added benefit that you don’t need to worry that updating one library or framework will render others that you’ve installed useless. 
+If you do find yourself needing to add extra features, there are a range of external libraries that you can use to enhance your site.
