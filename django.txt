@@ -11,3 +11,34 @@ This means that you don’t need to learn how to use anything else, and the synt
 
 There’s also the added benefit that you don’t need to worry that updating one library or framework will render others that you’ve installed useless. 
 If you do find yourself needing to add extra features, there are a range of external libraries that you can use to enhance your site.
+
+
+
+Django offers a wide range of built-in features and utilities. Make the most of them before reinventing the wheel.
+For example, use Django's authentication system, form handling, and database models.
+Leveraging these built-in tools not only saves you time but also ensures that you benefit from established best practices.
+
+from django.contrib.auth.models import User
+from django import forms
+
+# Using Django's built-in User model and form
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('username', 'email', 'password')
+
+
+Testing is a critical aspect of Django development. It's not only about ensuring that your code works but also about maintaining 
+its functionality over time. Write comprehensive unit tests and integration tests to cover your application's critical paths.
+Django's testing framework makes it relatively easy to write tests for your views, models, and forms.
+
+from django.test import TestCase
+from myapp.models import MyModel
+
+class MyModelTestCase(TestCase):
+    def setUp(self):
+        MyModel.objects.create(name="Test Model")
+
+    def test_model_name(self):
+        test_model = MyModel.objects.get(name="Test Model")
+        self.assertEqual(test_model.name, "Test Model")
