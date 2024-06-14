@@ -42,3 +42,14 @@ class MyModelTestCase(TestCase):
     def test_model_name(self):
         test_model = MyModel.objects.get(name="Test Model")
         self.assertEqual(test_model.name, "Test Model")
+
+
+
+Relative path" means using the path relative to the current working directory to define files rather than hard-coding the full path.
+For some reason, projects tend to be moved around from time to time. This can be an absolute bear to deal with if you don't first plan ahead for
+the possibility. If you don't use relative paths, the project will break if another person is working on the same project or the application is deployed 
+to the server.
+
+Unnecessary queries will always have adverse effects on database performance. Databases use foreign keys and many-to-many relationships to manage 
+relationships between tables. select_related allows developers to fetch related objects in a foreign key relationship, while prefetch_related allows 
+developers to fetch related objects in many to many or reverse foreign key relationships. These two methods will allow you to reduce the number of queries made to the database.
