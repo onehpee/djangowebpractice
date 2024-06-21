@@ -53,3 +53,27 @@ to the server.
 Unnecessary queries will always have adverse effects on database performance. Databases use foreign keys and many-to-many relationships to manage 
 relationships between tables. select_related allows developers to fetch related objects in a foreign key relationship, while prefetch_related allows 
 developers to fetch related objects in many to many or reverse foreign key relationships. These two methods will allow you to reduce the number of queries made to the database.
+
+
+rom django.db import models
+from django.urls import reverse
+
+class MyModelName(models.Model):
+    """A typical class defining a model, derived from the Model class."""
+
+    # Fields
+    my_field_name = models.CharField(max_length=20, help_text='Enter field documentation')
+    # …
+
+    # Metadata
+    class Meta:
+        ordering = ['-my_field_name']
+
+    # Methods
+    def get_absolute_url(self):
+        """Returns the URL to access a particular instance of MyModelName."""
+        return reverse('model-detail-view', args=[str(self.id)])
+
+    def __str__(self):
+        """String for representing the MyModelName object (in Admin site etc.)."""
+        return self.my_field_name
