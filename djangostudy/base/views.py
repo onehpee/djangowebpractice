@@ -20,7 +20,7 @@ def room(request, pk):
     context = {'room': room}
     return render(request, 'base/room.html', context)
 
-def creatRoom(request):
+def createRoom(request):
     form = RoomForm()
     if request.method == 'POST':
         form = RoomForm(request.POST)
@@ -30,3 +30,10 @@ def creatRoom(request):
         
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
+
+def updateRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    form = RoomForm(instance=room)
+    context = {'form': form}
+    return render(request, 'base/room_form.html', context)
+    
