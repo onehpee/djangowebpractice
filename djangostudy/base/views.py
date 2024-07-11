@@ -10,6 +10,11 @@ from .forms import RoomForm
 #    {'id': 3, 'name': 'Frontend Developers'},
 #]
 
+def loginPage(request):
+    context
+    return render(request, 'base/login_register.html', context)
+
+
 
 def home(request):
     q = request.GET.get('q') if request.GET.get('q') != None else ''
