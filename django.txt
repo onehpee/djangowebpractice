@@ -96,3 +96,30 @@ After the user presses the submit button, the server will receive the form data 
 If the form contains invalid data, the server should display the form again, this time with user-entered data in "valid" fields and messages to describe 
 the problem for the invalid fields. Once the server gets a request with all valid form data, it can perform an appropriate action (such as: saving the data,
 returning the result of a search, uploading a file, etc.) and then notify the user.
+
+
+
+Filter field_name and lookup_expr not configured
+
+While field_name and lookup_expr are optional, it is recommended that you specify them. By default, if field_name is not specified, the filter’s name on the FilterSet class will be used. Additionally, lookup_expr defaults to exact. The following is an example of a misconfigured price filter:
+
+class ProductFilter(django_filters.FilterSet):
+    price__gt = django_filters.NumberFilter()
+
+The filter instance will have a field name of price__gt and an exact lookup type. Under the hood, this will incorrectly be resolved as:
+
+Product.objects.filter(price__gt__exact=value)
+
+The above will most likely generate a FieldError. The correct configuration would be:
+
+class ProductFilter(django_filters.FilterSet):
+    price__gt = django_filters.NumberFilter(field_name='price', lookup_expr='gt')
+
+When using filterset_fields, you can also add the lookup_expr in the dict of fields like so:
+
+# ... ModelViewSet with DjangoFilterBackend in filter_backends ...
+
+filterset_fields = {
+    "price": ["gt", "exact"],
+}
+
