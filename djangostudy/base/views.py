@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.forms import UserCreationForm
-from .models import Room, Topic, Messsage
+from .models import Room, Topic, Message
 from .forms import RoomForm
 
 
@@ -87,10 +87,10 @@ def room(request, pk):
         )
         return redirect('room', pk=room.id)
     
-    context = {'room': room, 'messages':room_messages}
+    context = {'room': room, 'room_messages':room_messages}
     return render(request, 'base/room.html', context)
 
-@login_required(login_required='/login')
+@login_required(login_url='login')
 def createRoom(request):
     form = RoomForm()
     if request.method == 'POST':
@@ -102,7 +102,7 @@ def createRoom(request):
     context = {'form': form}
     return render(request, 'base/room_form.html', context)
 
-@login_required(login_required='/login')
+@login_required(login_url='login')
 def updateRoom(request, pk):
     room = Room.objects.get(id=pk)
     form = RoomForm(instance=room)
@@ -120,7 +120,7 @@ def updateRoom(request, pk):
     return render(request, 'base/room_form.html', context)
 
 
-@login_required(login_required='/login')
+@login_required(login_url='login')
 def deleteRoom(request, pk):
     room = Room.objects.get(id=pk)
     if request.method == 'POST':
